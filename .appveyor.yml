@@ -1,0 +1,15 @@
+build: off
+
+clone_folder: c:\gopath\src\github.com\chenjiandongx\oscar
+
+environment:
+  GOPATH: c:\gopath
+
+stack: go 1.13
+
+before_test:
+  - go get -t -v ./...
+  - go vet ./...
+
+test_script:
+  - go test -v ./...
