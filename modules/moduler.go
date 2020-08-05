@@ -11,6 +11,7 @@ const (
 	ModDownload      = "download"
 	ModGomod         = "gomod"
 	ModKernelCompile = "kernel_compile"
+	ModMemdump       = "memdump"
 	ModWeblog        = "weblog"
 )
 
@@ -25,6 +26,7 @@ var Registry = [...]Moduler{
 	NewDownloadModule(),
 	NewGomodModule(),
 	//NewKernelCompileModule(),
+	NewMemdumpModule(),
 	NewWeblogModule(),
 }
 

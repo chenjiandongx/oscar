@@ -41,7 +41,7 @@ func NewRunCommand() *cobra.Command {
 			forever, _ := cmd.Flags().GetBool("forever")
 			runCommand(args[0], forever)
 		},
-		Example: "  oscar run bootlog",
+		Example: "  oscar run memdump -f",
 	}
 
 	cmd.Flags().BoolP("forever", "f", false, "whether to run module forever")

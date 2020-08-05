@@ -92,6 +92,12 @@ func GenHashHex() string {
 	return fmt.Sprintf("%x", md5.Sum(key[:]))
 }
 
+func GenHashHexWithLen(n int) string {
+	key := [16]byte{}
+	rand.Read(key[:])
+	return fmt.Sprintf("%x", md5.Sum(key[:]))[:n]
+}
+
 func GenIntN(min, max int) int {
 	return min + rand.Intn(max-min)
 }
