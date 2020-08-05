@@ -6,7 +6,7 @@ import (
 
 	"github.com/Pallinder/go-randomdata"
 
-	"github.com/chenjiandongx/react/fixtures"
+	"github.com/chenjiandongx/oscar/fixtures"
 )
 
 type weblog struct{}

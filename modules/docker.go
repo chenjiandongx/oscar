@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/chenjiandongx/react/fixtures"
+	"github.com/chenjiandongx/oscar/fixtures"
 )
 
 type docker struct{}

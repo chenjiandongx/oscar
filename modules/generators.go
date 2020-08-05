@@ -8,7 +8,7 @@ import (
 	"path"
 	"time"
 
-	"github.com/chenjiandongx/react/fixtures"
+	"github.com/chenjiandongx/oscar/fixtures"
 )
 
 func init() {

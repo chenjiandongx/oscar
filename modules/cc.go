@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/chenjiandongx/react/fixtures"
+	"github.com/chenjiandongx/oscar/fixtures"
 )
 
 type cc struct{}
