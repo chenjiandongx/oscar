@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"math/rand"
 	"path"
+	"strings"
 	"time"
 
 	"github.com/chenjiandongx/oscar/fixtures"
@@ -135,4 +136,92 @@ func PrintlnWithDelay(s string, d int) {
 
 func PrintNewline() {
 	fmt.Println()
+}
+
+func genHeader(arch string) string {
+	rareCmds := []string{"SYSTBL ", "SYSHDR "}
+	cmds := []string{"WRAP   ", "CHK    ", "UPD    "}
+
+	cmd := cmds[rand.Intn(len(cmds))]
+	if GenBool(1.0 / 15.0) {
+		cmd = rareCmds[rand.Intn(len(rareCmds))]
+	}
+
+	cfiles := fmt.Sprintf("%sh", fixtures.Cfiles[rand.Intn(len(fixtures.Cfiles))])
+	if strings.HasPrefix(cfiles, "arch") {
+		items := strings.Split(cfiles, "/")
+		if len(items) >= 2 {
+			items[1] = arch
+		}
+		cfiles = strings.Join(items, "/")
+	}
+
+	return fmt.Sprintf("  %s %s", cmd, cfiles)
+}
+
+func genObject(arch string) string {
+	rareCmds := []string{"HOSTCC ", "AS     "}
+	cmds := []string{"AR     ", "CC     "}
+
+	cmd := cmds[rand.Intn(len(cmds))]
+	if GenBool(1.0 / 15.0) {
+		cmd = rareCmds[rand.Intn(len(rareCmds))]
+	}
+
+	cfiles := fmt.Sprintf("%sh", fixtures.Cfiles[rand.Intn(len(fixtures.Cfiles))])
+	if strings.HasPrefix(cfiles, "arch") {
+		items := strings.Split(cfiles, "/")
+		if len(items) >= 2 {
+			items[1] = arch
+		}
+		cfiles = strings.Join(items, "/")
+	}
+
+	return fmt.Sprintf("  %s %s", cmd, cfiles)
+}
+
+func genSpecial(arch string) string {
+	items := []string{
+		"HOSTLD  arch/ARCH/tools/relocs",
+		"HOSTLD  scripts/mod/modpost",
+		"MKELF   scripts/mod/elfconfig.h",
+		"LDS     arch/ARCH/entry/vdso/vdso32/vdso32.lds",
+		"LDS     arch/ARCH/kernel/vmlinux.lds",
+		"LDS     arch/ARCH/realmode/rm/realmode.lds",
+		"LDS     arch/ARCH/boot/compressed/vmlinux.lds",
+		"EXPORTS arch/ARCH/lib/lib-ksyms.o",
+		"EXPORTS lib/lib-ksyms.o",
+		"MODPOST vmlinux.o",
+		"SORTEX  vmlinux",
+		"SYSMAP  System.map",
+		"VOFFSET arch/ARCH/boot/compressed/../voffset.h",
+		"OBJCOPY arch/ARCH/entry/vdso/vdso32.so",
+		"OBJCOPY arch/ARCH/realmode/rm/realmode.bin",
+		"OBJCOPY arch/ARCH/boot/compressed/vmlinux.bin",
+		"OBJCOPY arch/ARCH/boot/vmlinux.bin",
+		"VDSO2C  arch/ARCH/entry/vdso/vdso-image-32.c",
+		"VDSO    arch/ARCH/entry/vdso/vdso32.so.dbg",
+		"RELOCS  arch/ARCH/realmode/rm/realmode.relocs",
+		"PASYMS  arch/ARCH/realmode/rm/pasyms.h",
+		"XZKERN  arch/ARCH/boot/compressed/vmlinux.bin.xz",
+		"MKPIGGY arch/ARCH/boot/compressed/piggy.S",
+		"DATAREL arch/ARCH/boot/compressed/vmlinux",
+		"ZOFFSET arch/ARCH/boot/zoffset.h",
+	}
+
+	special := items[rand.Intn(len(items))]
+	special = strings.ReplaceAll(special, "ARCH", arch)
+
+	return fmt.Sprintf("  %s", special)
+}
+
+func GenKernelCompileLine(arch string) string {
+	switch {
+	case GenBool(1.0 / 15.9):
+		return genSpecial(arch)
+	case GenBool(0.1):
+		return genHeader(arch)
+	default:
+		return genObject(arch)
+	}
 }

@@ -25,7 +25,7 @@ var Registry = [...]Moduler{
 	NewDockerModule(),
 	NewDownloadModule(),
 	NewGomodModule(),
-	//NewKernelCompileModule(),
+	NewKernelCompileModule(),
 	NewMemdumpModule(),
 	NewWeblogModule(),
 }
