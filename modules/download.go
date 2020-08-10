@@ -1,8 +1,6 @@
 package modules
 
 import (
-	"time"
-
 	"github.com/schollz/progressbar/v3"
 )
 
@@ -12,17 +10,7 @@ func (mod *download) Name() string {
 	return ModDownload
 }
 
-func (mod *download) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *download) display() {
+func (mod *download) Display() {
 	count := GenIntN(100, 2000)
 	bar := progressbar.Default(int64(count))
 	for i := 0; i < count; i++ {

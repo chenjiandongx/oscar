@@ -2,8 +2,6 @@ package modules
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/chenjiandongx/oscar/fixtures"
 )
 
@@ -13,17 +11,7 @@ func (mod *gomod) Name() string {
 	return ModGomod
 }
 
-func (mod *gomod) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *gomod) display() {
+func (mod *gomod) Display() {
 	stages := []string{"finding", "downloading", "extracting"}
 	output := make([]string, 0)
 

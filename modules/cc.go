@@ -6,7 +6,6 @@ import (
 	"math/rand"
 	"sort"
 	"strings"
-	"time"
 
 	"github.com/chenjiandongx/oscar/fixtures"
 )
@@ -17,17 +16,7 @@ func (mod *cc) Name() string {
 	return ModCc
 }
 
-func (mod *cc) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *cc) display() {
+func (mod *cc) Display() {
 	var (
 		compilers     = []string{"gcc", "clang"}
 		flagsOpt      = []string{"-O0", "-O1", "-O2", "-O3", "-Og", "-Os"}

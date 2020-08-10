@@ -15,17 +15,7 @@ func (mod *weblog) Name() string {
 	return ModWeblog
 }
 
-func (mod *weblog) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *weblog) display() {
+func (mod *weblog) Display() {
 	method := "GET"
 	burstMode := false
 	burstLineCnt := 0

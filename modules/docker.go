@@ -2,8 +2,6 @@ package modules
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/chenjiandongx/oscar/fixtures"
 )
 
@@ -13,24 +11,14 @@ func (mod *docker) Name() string {
 	return ModDocker
 }
 
-func (mod *docker) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *docker) display() {
+func (mod *docker) Display() {
 	for _, idx := range GenRandomIndex(20, 100, len(fixtures.DockerPackages)) {
 		pack, version := fixtures.DockerPackages[idx], GenPackageTag()
 		fmt.Printf("Untagged: %s:%s\n", pack, version)
-		fmt.Printf("Untagged: %s:%s@%s\n", pack, version, GenHashHex())
+		fmt.Printf("Untagged: %s:%s@%s\n", pack, version, GenHashHex(32))
 
 		for i := 0; i < GenIntN(10, 30); i++ {
-			fmt.Printf("Deleted: sha256:%s\n", GenHashHex())
+			fmt.Printf("Deleted: sha256:%s\n", GenHashHex(32))
 		}
 		SleepInMills(500, 5000)
 	}

@@ -14,17 +14,7 @@ func (mod *bootlog) Name() string {
 	return ModBootlog
 }
 
-func (mod *bootlog) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *bootlog) display() {
+func (mod *bootlog) Display() {
 	lines := GenIntN(100, 300)
 	burstMode := false
 	burstLineCount := 0

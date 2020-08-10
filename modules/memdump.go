@@ -3,7 +3,6 @@ package modules
 import (
 	"bytes"
 	"fmt"
-	"time"
 )
 
 type memdump struct{}
@@ -12,17 +11,7 @@ func (mod *memdump) Name() string {
 	return ModMemdump
 }
 
-func (mod *memdump) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *memdump) display() {
+func (mod *memdump) Display() {
 	currentLoc := GenIntN(2<<60, 2<<61)
 
 	var rows []string
@@ -34,7 +23,7 @@ func (mod *memdump) display() {
 
 		var ls []string
 		for j := 0; j < 16; j++ {
-			ls = append(ls, fmt.Sprintf("%s", GenHashHexWithLen(2)))
+			ls = append(ls, fmt.Sprintf("%s", GenHashHex(2)))
 		}
 
 		for idx, l := range ls {

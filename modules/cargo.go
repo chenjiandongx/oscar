@@ -13,17 +13,7 @@ func (mod *cargo) Name() string {
 	return ModCargo
 }
 
-func (mod *cargo) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *cargo) display() {
+func (mod *cargo) Display() {
 	stages := []string{"Downloading", "Compiling"}
 	output := make([]string, 0)
 

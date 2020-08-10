@@ -2,8 +2,6 @@ package modules
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/chenjiandongx/oscar/fixtures"
 )
 
@@ -13,17 +11,7 @@ func (mod *composer) Name() string {
 	return ModComposer
 }
 
-func (mod *composer) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *composer) display() {
+func (mod *composer) Display() {
 	stage := "Installing"
 
 	for _, idx := range GenRandomIndex(10, 100, len(fixtures.Composer)) {

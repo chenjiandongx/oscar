@@ -86,14 +86,8 @@ func GenPackageTag() string {
 	return fmt.Sprintf("%s", fixtures.DockerTags[idx])
 }
 
-func GenHashHex() string {
-	key := [256]byte{}
-	rand.Read(key[:])
-	return fmt.Sprintf("%x", md5.Sum(key[:]))
-}
-
-func GenHashHexWithLen(n int) string {
-	key := [16]byte{}
+func GenHashHex(n int) string {
+	key := [64]byte{}
 	rand.Read(key[:])
 	return fmt.Sprintf("%x", md5.Sum(key[:]))[:n]
 }

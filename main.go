@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/spf13/cobra"
 
@@ -32,7 +33,7 @@ func NewListCommand() *cobra.Command {
 func NewRunCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "run",
-		Short: "Run with the specify module",
+		Short: "Run with the specific module",
 		Run: func(cmd *cobra.Command, args []string) {
 			if len(args) < 1 {
 				fmt.Println("> please choose a module to run")
@@ -61,7 +62,12 @@ func runCommand(m string, forever bool) {
 		fmt.Printf("> sorry, [%s] module does not exist\n", m)
 		return
 	}
-	moduler.Display(forever)
+
+	moduler.Display()
+	if forever {
+		time.Sleep(time.Second)
+		moduler.Display()
+	}
 }
 
 func init() {
@@ -73,6 +79,6 @@ func init() {
 
 func main() {
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
+		fmt.Println("> oh, shit!")
 	}
 }

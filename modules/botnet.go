@@ -2,7 +2,6 @@ package modules
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/buger/goterm"
 )
@@ -13,17 +12,7 @@ func (mod *botnet) Name() string {
 	return ModBotnet
 }
 
-func (mod *botnet) Display(forever bool) {
-	mod.display()
-	if forever {
-		for {
-			time.Sleep(time.Second)
-			mod.display()
-		}
-	}
-}
-
-func (mod *botnet) display() {
+func (mod *botnet) Display() {
 	var clusters []int
 	for i := 0; i < GenIntN(8, 16); i++ {
 		clusters = append(clusters, GenIntN(100, 200))

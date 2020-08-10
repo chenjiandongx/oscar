@@ -21,7 +21,7 @@ var Registry = [...]Moduler{
 	NewCargoModule(),
 	NewCcModule(),
 	NewComposerModule(),
-	//NewCryptominingModule(),
+	NewCryptominingModule(),
 	NewDockerModule(),
 	NewDownloadModule(),
 	NewGomodModule(),
@@ -32,5 +32,5 @@ var Registry = [...]Moduler{
 
 type Moduler interface {
 	Name() string
-	Display(bool)
+	Display()
 }
