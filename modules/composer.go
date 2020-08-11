@@ -2,6 +2,7 @@ package modules
 
 import (
 	"fmt"
+
 	"github.com/chenjiandongx/oscar/fixtures"
 )
 

@@ -8,4 +8,5 @@ require (
 	github.com/fatih/color v1.9.0
 	github.com/schollz/progressbar/v3 v3.3.4
 	github.com/spf13/cobra v1.0.0
+	github.com/stretchr/testify v1.3.0
 )

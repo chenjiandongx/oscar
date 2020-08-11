@@ -83,8 +83,7 @@ func GenIncludes(lst []string, cnt int) string {
 }
 
 func GenPackageTag() string {
-	idx := rand.Intn(len(fixtures.DockerTags))
-	return fmt.Sprintf("%s", fixtures.DockerTags[idx])
+	return fixtures.DockerTags[rand.Intn(len(fixtures.DockerTags))]
 }
 
 func GenHashHex(n int) string {

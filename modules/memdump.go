@@ -14,7 +14,6 @@ func (mod *memdump) Name() string {
 func (mod *memdump) Display() {
 	currentLoc := GenIntN(2<<60, 2<<61)
 
-	var rows []string
 	for i := 0; i < GenIntN(600, 1000); i++ {
 		var buf bytes.Buffer
 
@@ -23,7 +22,7 @@ func (mod *memdump) Display() {
 
 		var ls []string
 		for j := 0; j < 16; j++ {
-			ls = append(ls, fmt.Sprintf("%s", GenHashHex(2)))
+			ls = append(ls, GenHashHex(2))
 		}
 
 		for idx, l := range ls {
@@ -43,11 +42,7 @@ func (mod *memdump) Display() {
 		}
 		buf.WriteString("]")
 
-		rows = append(rows, buf.String())
-	}
-
-	for _, row := range rows {
-		fmt.Println(row)
+		fmt.Println(buf.String())
 		SleepInMills(60, 200)
 	}
 }
