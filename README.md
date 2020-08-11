@@ -74,7 +74,7 @@ $ oscar list
 ### At a glance
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/19553554/89953121-11652080-dc61-11ea-987c-9c2b89bf21ad.gif" alt="image" width=800 />
+    <img src="https://user-images.githubusercontent.com/19553554/89953121-11652080-dc61-11ea-987c-9c2b89bf21ad.gif" alt="image" width=760 />
 </p>
 
 ![image](https://user-images.githubusercontent.com/19553554/89951631-589de200-dc5e-11ea-869d-635022a5382d.png)
