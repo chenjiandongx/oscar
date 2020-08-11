@@ -2,12 +2,15 @@
 
 > 🐶 Next generation building tool for nothing
 
+[![Build Status](https://travis-ci.org/chenjiandongx/oscar.svg?branch=master)](https://travis-ci.org/chenjiandongx/oscar) [![Build status](https://ci.appveyor.com/api/projects/status/wdh74a2qce47j9tx/branch/master?svg=true)](https://ci.appveyor.com/project/chenjiandongx/oscar/branch/master) [![MIT License](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://opensource.org/licenses/MIT) [![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/chenjiandongx/oscar)
+
+
 
 ## Motivation
 
 Imitation is the sincerest form of flattery.
 
-Oscar is yet another nonsense activity generator for Golang, which is inspired by the rust project [svenstaro/genact](https://github.com/svenstaro/genact). The aim of oscar is to ~~**pretend**~~ prove that you are busy working so that you could take a rest or drink a cup of cappuccino.
+[Oscar](https://github.com/chenjiandongx/oscar) is yet another nonsense activity generator for Golang, which is inspired by the rust project [svenstaro/genact](https://github.com/svenstaro/genact). The aim of oscar is to ~~**pretend**~~ prove that you are busy working so that you could take a rest or drink a cup of cappuccino.
 
 
 ## Features
