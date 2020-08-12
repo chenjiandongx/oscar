@@ -13,6 +13,7 @@ const (
 	ModKernelCompile = "kernel_compile"
 	ModMemdump       = "memdump"
 	ModWeblog        = "weblog"
+	ModGit           = "git"
 )
 
 var Registry = [...]Moduler{
@@ -28,6 +29,7 @@ var Registry = [...]Moduler{
 	NewKernelCompileModule(),
 	NewMemdumpModule(),
 	NewWeblogModule(),
+	NewGitModule(),
 }
 
 type Moduler interface {
