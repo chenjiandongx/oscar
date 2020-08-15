@@ -1,7 +1,9 @@
 package modules
 
 import (
+	"context"
 	"fmt"
+	"time"
 
 	"github.com/chenjiandongx/oscar/fixtures"
 )
@@ -12,7 +14,16 @@ func (mod *composer) Name() string {
 	return ModComposer
 }
 
-func (mod *composer) Display() {
+func (mod *composer) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	stage := "Installing"
 
 	for _, idx := range GenRandomIndex(10, 100, len(fixtures.Composer)) {

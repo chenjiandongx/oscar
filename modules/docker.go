@@ -1,7 +1,9 @@
 package modules
 
 import (
+	"context"
 	"fmt"
+	"time"
 
 	"github.com/chenjiandongx/oscar/fixtures"
 )
@@ -12,7 +14,16 @@ func (mod *docker) Name() string {
 	return ModDocker
 }
 
-func (mod *docker) Display() {
+func (mod *docker) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	for _, idx := range GenRandomIndex(20, 100, len(fixtures.DockerPackages)) {
 		pack, version := fixtures.DockerPackages[idx], GenPackageTag()
 		fmt.Printf("Untagged: %s:%s\n", pack, version)

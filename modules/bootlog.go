@@ -1,6 +1,7 @@
 package modules
 
 import (
+	"context"
 	"math/rand"
 	"strings"
 	"time"
@@ -14,7 +15,16 @@ func (mod *bootlog) Name() string {
 	return ModBootlog
 }
 
-func (mod *bootlog) Display() {
+func (mod *bootlog) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	lines := GenIntN(100, 300)
 	burstMode := false
 	burstLineCount := 0

@@ -2,7 +2,9 @@ package modules
 
 import (
 	"bytes"
+	"context"
 	"fmt"
+	"time"
 )
 
 type memdump struct{}
@@ -11,9 +13,17 @@ func (mod *memdump) Name() string {
 	return ModMemdump
 }
 
-func (mod *memdump) Display() {
-	currentLoc := GenIntN(2<<60, 2<<61)
+func (mod *memdump) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
 
+	currentLoc := GenIntN(2<<60, 2<<61)
 	for i := 0; i < GenIntN(600, 1000); i++ {
 		var buf bytes.Buffer
 

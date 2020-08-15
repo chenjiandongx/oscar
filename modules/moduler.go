@@ -32,5 +32,5 @@ var Registry = [...]Moduler{
 
 type Moduler interface {
 	Name() string
-	Display()
+	Display(bool)
 }

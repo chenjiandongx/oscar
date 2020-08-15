@@ -2,6 +2,7 @@ package modules
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"math/rand"
 	"time"
@@ -13,7 +14,16 @@ func (mod *cryptomining) Name() string {
 	return ModCryptomining
 }
 
-func (mod *cryptomining) Display() {
+func (mod *cryptomining) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	newJobsEveryNLines := GenIntN(20, 50)
 	remainUntilNewJobs := newJobsEveryNLines
 

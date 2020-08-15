@@ -84,6 +84,17 @@ $ oscar list
 ![image](https://user-images.githubusercontent.com/19553554/89951646-5fc4f000-dc5e-11ea-8229-b38bc2bb10f8.png)
 
 
+### Changelog
+
+#### V0.2.0 - 2020-08-15
+
+* Add the `-c` flag to make the cpu on the fly and let the fan noisy [#2](https://github.com/chenjiandongx/oscar/issues/2).
+
+#### V0.1.0 - 2020-08-12
+
+* Beta: the first release version of oscar.
+
+
 ## License
 
 MIT [©chenjiandongx](https://github.com/chenjiandongx)

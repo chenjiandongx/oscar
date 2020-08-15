@@ -9,7 +9,7 @@ import (
 	"github.com/chenjiandongx/oscar/modules"
 )
 
-const version = "0.1.0"
+const version = "0.2.0"
 
 var rootCmd = &cobra.Command{
 	Use:     "oscar",
@@ -40,16 +40,18 @@ func NewRunCommand() *cobra.Command {
 				return
 			}
 			forever, _ := cmd.Flags().GetBool("forever")
-			runCommand(args[0], forever)
+			cpu, _ := cmd.Flags().GetBool("cpu")
+			runCommand(args[0], forever, cpu)
 		},
 		Example: "  oscar run memdump -f",
 	}
 
 	cmd.Flags().BoolP("forever", "f", false, "whether to run module forever")
+	cmd.Flags().BoolP("cpu", "c", false, "whether to make the CPU on the fly")
 	return cmd
 }
 
-func runCommand(m string, forever bool) {
+func runCommand(m string, forever, highCpu bool) {
 	var moduler modules.Moduler
 	for _, r := range modules.Registry {
 		if r.Name() == m {
@@ -63,10 +65,12 @@ func runCommand(m string, forever bool) {
 		return
 	}
 
-	moduler.Display()
+	moduler.Display(highCpu)
 	if forever {
-		time.Sleep(time.Second)
-		moduler.Display()
+		for {
+			time.Sleep(time.Second)
+			moduler.Display(highCpu)
+		}
 	}
 }
 

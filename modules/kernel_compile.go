@@ -1,8 +1,10 @@
 package modules
 
 import (
+	"context"
 	"fmt"
 	"math/rand"
+	"time"
 
 	"github.com/chenjiandongx/oscar/fixtures"
 )
@@ -13,7 +15,16 @@ func (mod *kernelCompile) Name() string {
 	return ModKernelCompile
 }
 
-func (mod *kernelCompile) Display() {
+func (mod *kernelCompile) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	arch := fixtures.Archs[rand.Intn(len(fixtures.Archs))]
 	for i := 0; i < GenIntN(100, 600); i++ {
 		line := GenKernelCompileLine(arch)

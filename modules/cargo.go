@@ -1,6 +1,7 @@
 package modules
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -13,7 +14,16 @@ func (mod *cargo) Name() string {
 	return ModCargo
 }
 
-func (mod *cargo) Display() {
+func (mod *cargo) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	stages := []string{"Downloading", "Compiling"}
 	output := make([]string, 0)
 

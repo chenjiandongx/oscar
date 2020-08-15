@@ -1,6 +1,7 @@
 package modules
 
 import (
+	"context"
 	"fmt"
 	"time"
 
@@ -15,7 +16,16 @@ func (mod *weblog) Name() string {
 	return ModWeblog
 }
 
-func (mod *weblog) Display() {
+func (mod *weblog) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	method := "GET"
 	burstMode := false
 	burstLineCnt := 0

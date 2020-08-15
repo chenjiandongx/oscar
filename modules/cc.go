@@ -2,10 +2,12 @@ package modules
 
 import (
 	"bytes"
+	"context"
 	"fmt"
 	"math/rand"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/chenjiandongx/oscar/fixtures"
 )
@@ -16,7 +18,16 @@ func (mod *cc) Name() string {
 	return ModCc
 }
 
-func (mod *cc) Display() {
+func (mod *cc) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	var (
 		compilers     = []string{"gcc", "clang"}
 		flagsOpt      = []string{"-O0", "-O1", "-O2", "-O3", "-Og", "-Os"}

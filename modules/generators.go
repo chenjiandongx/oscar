@@ -2,6 +2,7 @@ package modules
 
 import (
 	"bytes"
+	"context"
 	"crypto/md5"
 	"fmt"
 	"math/rand"
@@ -222,5 +223,19 @@ func GenKernelCompileLine(arch string) string {
 		return genHeader(arch)
 	default:
 		return genObject(arch)
+	}
+}
+
+func BusyCPUWorking(ctx context.Context) {
+	var i int
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			i++
+			i--
+			time.Sleep(2 << 3 * time.Microsecond)
+		}
 	}
 }

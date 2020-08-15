@@ -1,7 +1,9 @@
 package modules
 
 import (
+	"context"
 	"fmt"
+	"time"
 
 	"github.com/buger/goterm"
 )
@@ -12,7 +14,16 @@ func (mod *botnet) Name() string {
 	return ModBotnet
 }
 
-func (mod *botnet) Display() {
+func (mod *botnet) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
+
 	var clusters []int
 	for i := 0; i < GenIntN(8, 16); i++ {
 		clusters = append(clusters, GenIntN(100, 200))
