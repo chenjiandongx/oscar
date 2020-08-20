@@ -17,6 +17,7 @@ func (mod *git) Display() {
 		SleepInMills(500, 1000)
 		fmt.Println(fixtures.GitConsole[i])
 	}
+
 }
 
 func NewGitModule() Moduler {
