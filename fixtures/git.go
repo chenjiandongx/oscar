@@ -1,6 +1,6 @@
 package fixtures
 
-var console=`
+var console = `
 "cd ~/git"
 "git clone https://github.com/chenjiandongx/oscar.git"
 "Cloning into 'oscar'..."
