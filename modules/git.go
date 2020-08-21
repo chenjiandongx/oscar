@@ -1,7 +1,9 @@
 package modules
 
 import (
+	"context"
 	"fmt"
+	"time"
 
 	"github.com/chenjiandongx/oscar/fixtures"
 )
@@ -12,10 +14,18 @@ func (mod *git) Name() string {
 	return ModGit
 }
 
-func (mod *git) Display() {
+func (mod *git) Display(highCpu bool) {
+	if highCpu {
+		ctx, cancel := context.WithCancel(context.Background())
+		go BusyCPUWorking(ctx)
+		defer func() {
+			cancel()
+			time.Sleep(100 * time.Microsecond)
+		}()
+	}
 
 	for i := 0; i < len(fixtures.GitConsole); i++ {
-		SleepInMills(500, 1000)
+		SleepInMills(300, 800)
 		fmt.Println(fixtures.GitConsole[i])
 	}
 
