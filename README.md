@@ -72,6 +72,7 @@ $ oscar list
  - kernel_compile
  - memdump
  - weblog
+ - git
 ```
 
 ### At a glance
