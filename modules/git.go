@@ -15,7 +15,6 @@ func (mod *git) Name() string {
 }
 
 func (mod *git) Display(highCpu bool) {
-
 	if highCpu {
 		ctx, cancel := context.WithCancel(context.Background())
 		go BusyCPUWorking(ctx)
