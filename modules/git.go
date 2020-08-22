@@ -2,7 +2,7 @@ package modules
 
 import (
 	"context"
-	"fmt"
+	"strings"
 	"time"
 
 	"github.com/chenjiandongx/oscar/fixtures"
@@ -25,10 +25,13 @@ func (mod *git) Display(highCpu bool) {
 	}
 
 	for i := 0; i < len(fixtures.GitConsole); i++ {
-		SleepInMills(300, 800)
-		fmt.Println(fixtures.GitConsole[i])
+		if strings.HasPrefix(fixtures.GitConsole[i], "#") {
+			SleepInMills(500, 600)
+			PrintWithDelay(GreenString(fixtures.GitConsole[i]+"\n"), 20)
+			continue
+		}
+		PrintWithDelay(fixtures.GitConsole[i]+"\n", 20)
 	}
-
 }
 
 func NewGitModule() Moduler {

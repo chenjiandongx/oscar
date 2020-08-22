@@ -68,11 +68,11 @@ $ oscar list
  - cryptomining
  - docker
  - download
+ - git
  - gomod
  - kernel_compile
  - memdump
  - weblog
- - git
 ```
 
 ### At a glance
