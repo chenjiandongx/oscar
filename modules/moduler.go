@@ -9,6 +9,7 @@ const (
 	ModCryptomining  = "cryptomining"
 	ModDocker        = "docker"
 	ModDownload      = "download"
+	ModGit           = "git"
 	ModGomod         = "gomod"
 	ModKernelCompile = "kernel_compile"
 	ModMemdump       = "memdump"
@@ -24,6 +25,7 @@ var Registry = [...]Moduler{
 	NewCryptominingModule(),
 	NewDockerModule(),
 	NewDownloadModule(),
+	NewGitModule(),
 	NewGomodModule(),
 	NewKernelCompileModule(),
 	NewMemdumpModule(),

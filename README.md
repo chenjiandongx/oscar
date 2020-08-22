@@ -68,6 +68,7 @@ $ oscar list
  - cryptomining
  - docker
  - download
+ - git
  - gomod
  - kernel_compile
  - memdump
