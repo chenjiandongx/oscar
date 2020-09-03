@@ -85,6 +85,23 @@ $ oscar list
 ![image](https://user-images.githubusercontent.com/19553554/89951646-5fc4f000-dc5e-11ea-8229-b38bc2bb10f8.png)
 
 
+### Give it a try
+
+- [bootlog](https://oscar.chenjiandongx.me?module=bootlog)
+- [botnet](https://oscar.chenjiandongx.me?module=botnet)
+- [cargo](https://oscar.chenjiandongx.me?module=cargo)
+- [cc](https://oscar.chenjiandongx.me?module=cc)
+- [composer](https://oscar.chenjiandongx.me?module=composer)
+- [cryptomining](https://oscar.chenjiandongx.me?module=cryptomining)
+- [docker](https://oscar.chenjiandongx.me?module=docker)
+- [download](https://oscar.chenjiandongx.me?module=download)
+- [git](https://oscar.chenjiandongx.me?module=git)
+- [gomod](https://oscar.chenjiandongx.me?module=gomod)
+- [kernel_compile](https://oscar.chenjiandongx.me?module=kernel_compile)
+- [memdump](https://oscar.chenjiandongx.me?module=memdump)
+- [weblog](https://oscar.chenjiandongx.me?module=weblog)
+
+
 ### Changelog
 
 #### V0.2.0 - 2020-08-15
